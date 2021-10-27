@@ -1,13 +1,28 @@
 
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" >
+      <i class="fas fa-search-dollar"></i>EXPENSE MANAGER
+    </a>
+  </div>
+</nav>
 
+<% if notice %>
 <div class="container">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= notice %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</div>
+<% end %>
+
+<div class="container expense-wrapper">
   <div class="row">
     <div class="col">
       <div class="card text-center">
         <div class="card-header">
           <h1>SAVINGS</h1>
-    
-          <%= link_to 'Add Saving', new_saving_path,class: "btn btn-info popup", remote:true %>
+          <%= link_to 'Add Saving', new_saving_path,class: "btn btn-info ", data: {bs_toggle: 'modal',bs_target: '#exampleModal', remote: true }%>
         </div>
         <div class="card-body">
           <h6 class="card-title">Total Savings</h6>
@@ -22,6 +37,11 @@
   			      <span class="badge bg-primary rounded-pill"><%= saving.amount %></span>
   			    </div>
   			     <div class="ex_sav-date"><%= saving.date %></div>
+             <%= link_to content_tag(
+              :i,
+              nil, 
+              class: 'fas fa-times-circle'
+            ), saving, method: :delete, data: { confirm: 'Are you sure?' } %>
   			  </li>
   			<% end %>
           </ol>
@@ -30,7 +50,7 @@
               <div class="card text-center">
           <div class="card-header">
             <h1>EXPENSES</h1>
-            <%= link_to 'Add expense', new_expense_path,class: "btn btn-info" %>
+            <%= link_to 'Add Expense', new_expense_path,class: "btn btn-info ", data: {bs_toggle: 'modal',bs_target: '#exampleModal', remote: true }%>
           </div>
           <div class="card-body">
             <h6 class="card-title">Total expenses</h6>
@@ -45,6 +65,11 @@
                 <span class="badge bg-primary rounded-pill"><%= expense.amount %></span>
               </div>
                <div class="ex_sav-date"><%= expense.date %></div>
+               <%= link_to content_tag(
+                :i,
+                nil, 
+                class: 'fas fa-times-circle'
+              ), expense, method: :delete, data: { confirm: 'Are you sure?' } %>
             </li>
           <% end %>
         </ol>
@@ -53,17 +78,19 @@
   </div>
 </div>
 
-<div id="popup_wrap">
 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div id="newUserForm"></div>
+     
+    </div>
+  </div>
 </div>
 
-<script type="text/javascript">
 
-  $('.popup').click(function(){
-    $('#popup_wrap').css("display","flex")
 
-  })
-  $('#close-btn_flash').click(function(){
-    $('.flash-msg_wrap').css("display","none")
-  })
-</script>
+
+
+

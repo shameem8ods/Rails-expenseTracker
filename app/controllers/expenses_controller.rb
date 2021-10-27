@@ -22,14 +22,16 @@ class ExpensesController < ApplicationController
   # POST /expenses or /expenses.json
   def create
     @expense = Expense.new(expense_params)
-
     respond_to do |format|
       if @expense.save
+       
         format.html { redirect_to root_path, notice: "Expense was successfully created." }
         format.json { render :show, status: :created, location: @expense }
       else
+        format.js
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @expense.errors, status: :unprocessable_entity }
+        
       end
     end
   end
@@ -51,7 +53,7 @@ class ExpensesController < ApplicationController
   def destroy
     @expense.destroy
     respond_to do |format|
-      format.html { redirect_to expenses_url, notice: "Expense was successfully destroyed." }
+      format.html { redirect_to root_path, notice: "Expense was successfully destroyed." }
       format.json { head :no_content }
     end
   end

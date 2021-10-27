@@ -1,0 +1,5 @@
+
+<% if @expense.errors.any? %>
+$("#errors_div").css("display","block")
+$("#errors_div").html("<%= @expense.errors.full_messages%>")
+<%end%>

@@ -1,1 +1,2 @@
-$('#popup_wrap').html("<%= j render 'savings/form' , saving: @saving %>")
+$('#newUserForm').html("<%= escape_javascript render('form', saving: @saving) %>")
+

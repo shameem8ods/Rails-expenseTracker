@@ -1,4 +1,10 @@
-<%= form_with(model: expense, local: true) do |form| %>
+<%= form_with(model: expense, local: false) do |form| %>
+<div id="errors_div"></div>
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Add Expense</h5>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
   <% if expense.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(expense.errors.count, "error") %> prohibited this expense from being saved:</h2>
@@ -11,22 +17,25 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="input-group">
     <%= form.label :expense_type %>
-    <%= form.text_field :expense_type %>
+    <%= form.text_field :expense_type, class: "form-control"  %>
   </div>
 
-  <div class="field">
+  <div class="input-group">
     <%= form.label :amount %>
-    <%= form.text_field :amount %>
+    <%= form.text_field :amount, class: "form-control"  %>
   </div>
 
-  <div class="field">
+  <div >
     <%= form.label :date %>
-    <%= form.date_select :date %>
+    <%= form.date_select :date , class: "form-control" %>
   </div>
-
-  <div class="actions">
+</div>
+<div class="modal-footer">
+  <div class="input-submit">
     <%= form.submit %>
   </div>
+</div>
 <% end %>
+

@@ -1,4 +1,6 @@
 @import "bootstrap";
+@import 'font_awesome5';
+
 .col{
 	h1{
 		font-size: 20px;
@@ -36,6 +38,80 @@ color: black !important;
     }
   }
 }
-#popup_wrap{
+
+.fw-bold{
+  font-size: 16px;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+}
+.input-group{
+  flex-direction: column;
+  input{
+    width: 100% !important;
+    border-top-left-radius: 3px !important;
+    border-bottom-left-radius:  3px !important;
+  }
+}
+select{
+  background: white;
+    border-radius: 3px !important;
+    padding: 5px;
+    border: 1px solid #ced4da !important;
+
+}
+.input-submit{
+  input{
+    border-radius: 3px;
+    padding: 7px 10px;
+    margin-top: 20px;
+    background: #18a563;
+    outline: none;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+  }
+}
+#errors_div{
   display: none;
+  width: 100%;
+  background: red;
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+}
+body{
+  margin: unset !important;
+}
+nav{
+  
+}
+.container-fluid{
+  padding: 10px 50px;
+  a{
+    font-size: 25px;
+    font-weight: bold;
+    pointer-events: none;
+    
+    svg{
+      margin-right: 5px;
+    }
+  }
+}
+.expense-wrapper{
+  margin-top: 50px;
+}
+.list-group-item{
+  a{
+    position: absolute;
+    right: 14px;
+    bottom: 7px;
+    &:hover{
+      background-color: transparent;
+    }
+   svg{
+     color: black;
+   }
+  }
 }

@@ -22,13 +22,14 @@ class SavingsController < ApplicationController
   # POST /savings or /savings.json
   def create
     @saving = Saving.new(saving_params)
-
     respond_to do |format|
       if @saving.save
         format.html { redirect_to root_path, notice: "Saving was successfully created." }
         format.json { render :show, status: :created, location: @saving }
+        
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.js
+        format.html {  render :new, status: :unprocessable_entity }
         format.json { render json: @saving.errors, status: :unprocessable_entity }
       end
     end
@@ -51,7 +52,7 @@ class SavingsController < ApplicationController
   def destroy
     @saving.destroy
     respond_to do |format|
-      format.html { redirect_to savings_url, notice: "Saving was successfully destroyed." }
+      format.html { redirect_to root_path, notice: "Saving was successfully destroyed." }
       format.json { head :no_content }
     end
   end
