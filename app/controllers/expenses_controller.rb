@@ -1,5 +1,6 @@
 class ExpensesController < ApplicationController
   before_action :set_expense, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /expenses or /expenses.json
   def index
@@ -40,9 +41,10 @@ class ExpensesController < ApplicationController
   def update
     respond_to do |format|
       if @expense.update(expense_params)
-        format.html { redirect_to @expense, notice: "Expense was successfully updated." }
+        format.html { redirect_to root_path, notice: "Expense was successfully updated." }
         format.json { render :show, status: :ok, location: @expense }
       else
+        format.js
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @expense.errors, status: :unprocessable_entity }
       end
@@ -66,6 +68,6 @@ class ExpensesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def expense_params
-      params.require(:expense).permit(:expense_type, :amount, :date)
+      params.require(:expense).permit(:expense_type, :amount, :date,:user_id)
     end
 end

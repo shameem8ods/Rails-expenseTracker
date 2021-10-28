@@ -1,5 +1,8 @@
 class SavingsController < ApplicationController
   before_action :set_saving, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update,:destroy,:show]
+
 
   # GET /savings or /savings.json
   def index
@@ -39,9 +42,10 @@ class SavingsController < ApplicationController
   def update
     respond_to do |format|
       if @saving.update(saving_params)
-        format.html { redirect_to @saving, notice: "Saving was successfully updated." }
+        format.html { redirect_to root_path, notice: "Saving was successfully updated." }
         format.json { render :show, status: :ok, location: @saving }
       else
+        format.js
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @saving.errors, status: :unprocessable_entity }
       end
@@ -57,6 +61,11 @@ class SavingsController < ApplicationController
     end
   end
 
+  def correct_user
+    @saving = current_user.savings.find_by(id: params[:id])
+    redirect_to root_path, notice: "Not autherised to do this action" if @saving.nil?
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_saving
@@ -65,6 +74,6 @@ class SavingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def saving_params
-      params.require(:saving).permit(:saving_type, :amount, :date)
+      params.require(:saving).permit(:saving_type, :amount, :date,:user_id)
     end
 end

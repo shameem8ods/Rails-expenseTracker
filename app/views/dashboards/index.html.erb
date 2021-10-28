@@ -4,6 +4,10 @@
     <a class="navbar-brand" >
       <i class="fas fa-search-dollar"></i>EXPENSE MANAGER
     </a>
+    <div>
+    <div>Logged in as<span class="text-success"><%= current_user.email %></span> </div>
+    <%= link_to 'Log out', destroy_user_session_path, class: "btn btn-danger" ,method: :delete %>
+    </div>
   </div>
 </nav>
 
@@ -31,6 +35,7 @@
       </div>
   	   <ol class="list-group list-group">
   	   	 <% @savings.each do |saving| %>
+          <% if saving.user == current_user %>
   			  <li class="list-group-item d-flex justify-content-between align-items-start">
   			    <div class="ms-2 me-auto">
   			      <div class="fw-bold"><%= saving.saving_type %></div>
@@ -42,7 +47,13 @@
               nil, 
               class: 'fas fa-times-circle'
             ), saving, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to content_tag(
+              :i,
+              nil, 
+              class: 'fas fa-edit'
+            ), edit_saving_path(saving), data: {bs_toggle: 'modal',bs_target: '#exampleModal', remote: true }%>
   			  </li>
+          <% end %>
   			<% end %>
           </ol>
     </div>
@@ -59,6 +70,7 @@
         </div>
          <ol class="list-group list-group">
            <% @expenses.each do |expense| %>
+           <% if expense.user == current_user %>
             <li class="list-group-item d-flex justify-content-between align-items-start">
               <div class="ms-2 me-auto">
                 <div class="fw-bold"><%= expense.expense_type %></div>
@@ -70,7 +82,13 @@
                 nil, 
                 class: 'fas fa-times-circle'
               ), expense, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to content_tag(
+              :i,
+              nil, 
+              class: 'fas fa-edit'
+            ), edit_expense_path(expense), data: {bs_toggle: 'modal',bs_target: '#exampleModal', remote: true }%>
             </li>
+            <% end %>
           <% end %>
         </ol>
     </div>

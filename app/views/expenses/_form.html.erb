@@ -31,6 +31,9 @@
     <%= form.label :date %>
     <%= form.date_select :date , class: "form-control" %>
   </div>
+  <div>
+    <%= form.number_field :user_id , value:current_user.id, type: :hidden %>
+  </div>
 </div>
 <div class="modal-footer">
   <div class="input-submit">
