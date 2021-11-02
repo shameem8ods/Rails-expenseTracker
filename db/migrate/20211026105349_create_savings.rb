@@ -4,7 +4,6 @@ class CreateSavings < ActiveRecord::Migration[5.2]
       t.string :saving_type
       t.float :amount
       t.date :date
-
       t.timestamps
     end
   end

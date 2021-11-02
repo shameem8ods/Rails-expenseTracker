@@ -42,20 +42,12 @@
   			      <span class="badge bg-primary rounded-pill"><%= saving.amount %></span>
   			    </div>
   			     <div class="ex_sav-date"><%= saving.date %></div>
-             <%= link_to content_tag(
-              :i,
-              nil, 
-              class: 'fas fa-times-circle'
-            ), saving, method: :delete, data: { confirm: 'Are you sure?' } %>
-            <%= link_to content_tag(
-              :i,
-              nil, 
-              class: 'fas fa-edit'
-            ), edit_saving_path(saving), data: {bs_toggle: 'modal',bs_target: '#exampleModal', remote: true }%>
+             <%= link_to content_tag(:i,nil, class: 'fas fa-times-circle'), saving, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to content_tag(:i,nil, class: 'fas fa-edit'), edit_saving_path(saving), data: {bs_toggle: 'modal',bs_target: '#exampleModal', remote: true }%>
   			  </li>
           <% end %>
   			<% end %>
-          </ol>
+       </ol>
     </div>
         <div class="col">
               <div class="card text-center">
@@ -77,16 +69,8 @@
                 <span class="badge bg-primary rounded-pill"><%= expense.amount %></span>
               </div>
                <div class="ex_sav-date"><%= expense.date %></div>
-               <%= link_to content_tag(
-                :i,
-                nil, 
-                class: 'fas fa-times-circle'
-              ), expense, method: :delete, data: { confirm: 'Are you sure?' } %>
-              <%= link_to content_tag(
-              :i,
-              nil, 
-              class: 'fas fa-edit'
-            ), edit_expense_path(expense), data: {bs_toggle: 'modal',bs_target: '#exampleModal', remote: true }%>
+               <%= link_to content_tag(:i,nil, class: 'fas fa-times-circle'), expense, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to content_tag(:i,nil, class: 'fas fa-edit'), edit_expense_path(expense), data: {bs_toggle: 'modal',bs_target: '#exampleModal', remote: true }%>
             </li>
             <% end %>
           <% end %>
@@ -96,13 +80,10 @@
   </div>
 </div>
 
-
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      
       <div id="newUserForm"></div>
-     
     </div>
   </div>
 </div>
