@@ -8,9 +8,6 @@ class SavingsController < ApplicationController
     @savings = Saving.all
   end
 
-  def show
-  end
-
   def new
     @saving = Saving.new
   end

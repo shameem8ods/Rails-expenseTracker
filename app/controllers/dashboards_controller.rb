@@ -4,7 +4,8 @@ class DashboardsController < ApplicationController
 def index
   @savings = Saving.all
   @expenses = Expense.all
-  @allsavings = current_user.savings.sum(:amount)-current_user.expenses.sum(:amount)
+  @allsavings = current_user.savings.sum(:amount)
   @allexpenses = current_user.expenses.sum(:amount)
+  @balance = current_user.savings.sum(:amount)-current_user.expenses.sum(:amount)
 end
 end

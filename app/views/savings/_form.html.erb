@@ -1,50 +1,34 @@
 
-
 <%= form_with(model: saving, local: false) do |form| %>
 <div id="errors_div"></div>
 <div class="modal-header">
   <h5 class="modal-title" id="exampleModalLabel">Add Saving</h5>
   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
-<div class="modal-body">
-  <% if saving.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(saving.errors.count, "error") %> prohibited this saving from being saved:</h2>
+  <div class="modal-body">
+      <div class="input-group">
+        <%= form.label :saving_type %>
+        <%= form.text_field :saving_type , class: "form-control" %>
+      </div>
 
-    <ul>
-    <% saving.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
+      <div class="input-group">
+        <%= form.label :amount %>
+        <%= form.text_field :amount, class: "form-control" %>
+      </div>
+
+      <div >
+        <%= form.label :date %>
+        <%= form.date_select :date, class: "form-control" %>
+      </div>
+      <div>
+        <%= form.number_field :user_id , value:current_user.id, type: :hidden %>
+      </div>
+ </div>
+  <div class="modal-footer">
+    <div class="input-submit">
+      <%= form.submit %>
+    </div>
   </div>
-<% end %>
-
-<div class="input-group">
-  <%= form.label :saving_type %>
-  <%= form.text_field :saving_type , class: "form-control" %>
-</div>
-
-<div class="input-group">
-  <%= form.label :amount %>
-  <%= form.text_field :amount, class: "form-control" %>
-</div>
-
-<div >
-  <%= form.label :date %>
-  <%= form.date_select :date, class: "form-control" %>
-</div>
-<div>
-  <%= form.number_field :user_id , value:current_user.id, type: :hidden %>
-</div>
-
-
-</div>
-<div class="modal-footer">
-  <div class="input-submit">
-    <%= form.submit %>
-  </div>
-</div>
-
 <% end %>
 
 

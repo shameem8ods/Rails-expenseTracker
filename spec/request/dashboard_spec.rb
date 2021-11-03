@@ -61,8 +61,7 @@ context 'expense' do
         expect response.success?
       end
 
-      context "creates a expense with valid attributes" do
-        it "creates a new expense" do
+    it "creates a new expense from dashboard" do
           expect do
             expense = Expense.new(valid_attributes)
             expense.user = current_user
@@ -70,19 +69,13 @@ context 'expense' do
             post expenses_url, params: { expense: valid_attributes }
         end.to change(Expense, :count).by(1)
       end
-    end
   
     it "does not create a new expense" do
       expect {
         post expenses_url, params: { expense: invalid_attributes }
       }.to change(Expense, :count).by(0)
     end
-    it "redirects to the login" do
-        post expenses_url, params: { expense: valid_attributes }
-        expect(response).to redirect_to(new_user_session_url)
-    
-    end
-  
+   
   
   
       let(:new_attributes) do
@@ -94,7 +87,7 @@ context 'expense' do
         }
       end
   
-      it 'updates the requested expense' do
+      it 'updates the requested expense from dashboard' do
         expense = Expense.new(valid_attributes)
         expense.user = current_user
         expense.save
@@ -108,13 +101,7 @@ context 'expense' do
         patch expense_url(expense), params: { expense: invalid_attributes }
         expect response.success?
       end
-      it "redirects to the login" do
-        expense = Expense.create! valid_attributes
-     patch expense_url(expense), params: { expense: new_attributes }
-     expense.reload
-     expect(response).to redirect_to(new_user_session_url)
-  
-   end
+      
   
   
   
@@ -127,11 +114,6 @@ context 'expense' do
         end.to change(Expense, :count).by(-1)
       end
 
-      it "redirects to the login" do
-        expense = Expense.create! valid_attributes
-        delete expense_url(expense)
-        expect(response).to redirect_to(new_user_session_url)
-      end
 end
 
       
@@ -178,8 +160,8 @@ context 'saving' do
           expect response.success?
         end
     
-     context "creates a new saving from dashboard" do
-          it "creates a new saving" do
+     
+          it "creates a new saving from dashboard" do
             expect do
               saving = Saving.new(valid_attributes)
               saving.user = current_user
@@ -189,11 +171,7 @@ context 'saving' do
         end
      
     
-      it "redirects to the login" do
-        post savings_url, params: { saving: valid_attributes }
-        expect(response).to redirect_to(new_user_session_url)
-    
-    end
+     
     
       it "does not create a new saving" do
         expect {
@@ -204,7 +182,7 @@ context 'saving' do
         post savings_url, params: { saving: invalid_attributes }
         expect response.success?
       end
-    end 
+
     
         let(:new_attributes) do
           {
@@ -215,7 +193,7 @@ context 'saving' do
           }
         end
     
-        it 'updates the requested saving' do
+        it 'updates the requested saving from dashboard' do
          saving = Saving.new(valid_attributes)
          saving.user = current_user
          saving.save
@@ -229,29 +207,16 @@ context 'saving' do
           patch saving_url(saving), params: { saving: invalid_attributes }
           expect response.success?
         end
-        it "redirects to the saving" do
-          saving = Saving.create! valid_attributes
-       patch saving_url(saving), params: { saving: new_attributes }
-       saving.reload
-       expect(response).to redirect_to(new_user_session_url)
-    
-     end
+       
     
     
-        it 'destroys the requested  saving' do
+        it 'destroys the requested  saving from dashboard' do
           saving = Saving.new(valid_attributes)
           saving.user = current_user
           saving.save
           expect do
             saving.delete
           end.to change(Saving, :count).by(-1)
-        end
-    
-        it "redirects to the login" do
-          saving = Saving.create! valid_attributes
-          delete saving_url(saving)
-          expect(response).to redirect_to(new_user_session_url)
-        end
-    
+        end 
 end
 end

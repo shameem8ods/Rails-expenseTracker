@@ -7,9 +7,6 @@ class ExpensesController < ApplicationController
     @expenses = Expense.all
   end
 
-  def show
-  end
-
   def new
     @expense = Expense.new
   end
